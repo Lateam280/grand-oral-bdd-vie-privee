@@ -1,4 +1,4 @@
-create table utilisateurs (id int PRIMARY KEY not null,
+create table utilisateurs (id INTEGER PRIMARY KEY AUTOINCREMENT,
                             nom varchar(15),
                             prenom varchar(15),
                             email varchar(50),
@@ -6,14 +6,14 @@ create table utilisateurs (id int PRIMARY KEY not null,
                             date_inscription date 
                             );
 
-create table posts (id int PRIMARY KEY not null,
+create table posts (id INTEGER PRIMARY KEY AUTOINCREMENT,
                     id_utilisateurs int,
                     contenu varchar(500),
                     date_publication date,
                     FOREIGN KEY (id_utilisateurs) REFERENCES utilisateurs(id)
 );
 
-create table connexions (id int PRIMARY KEY not null,
+create table connexions (id INTEGER PRIMARY KEY AUTOINCREMENT,
                          id_utilisateurs int,
                          date_connexion date,
                          adresse_ip varchar(15),
