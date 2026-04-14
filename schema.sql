@@ -3,7 +3,7 @@ create table utilisateurs (id int PRIMARY KEY not null,
                             prenom varchar(15),
                             email varchar(50),
                             mot_de_passe varchar(100),
-                            date_inscription date, 
+                            date_inscription date 
                             );
 
 create table posts (id int PRIMARY KEY not null,
