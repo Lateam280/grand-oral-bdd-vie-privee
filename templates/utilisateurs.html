@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto">
+    <h1 class="text-3xl font-bold text-indigo-400 mb-8">Liste des utilisateurs</h1>
+    
+    <div class="bg-gray-900 rounded-2xl overflow-hidden border border-gray-800">
+        <table class="w-full text-sm">
+            <thead class="bg-gray-800 text-gray-400 uppercase text-xs">
+                <tr>
+                    <th class="px-6 py-4 text-left">ID</th>
+                    <th class="px-6 py-4 text-left">Nom</th>
+                    <th class="px-6 py-4 text-left">Prénom</th>
+                    <th class="px-6 py-4 text-left">Email</th>
+                    <th class="px-6 py-4 text-left">Mot de passe</th>
+                    <th class="px-6 py-4 text-left">Inscription</th>
+                    <th class="px-6 py-4 text-left">Profil</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-800">
+                {{ users|length }}
+                {% for user in users %}
+                {{ user }}
+                <tr class="hover:bg-gray-800 transition">
+                    <td class="px-6 py-4 text-gray-400">{{ user['id'] }}</td>
+                    <td class="px-6 py-4">{{ user['nom'] }}</td>
+                    <td class="px-6 py-4">{{ user['prenom'] }}</td>
+                    <td class="px-6 py-4 text-gray-400">{{ user['email'] }}</td>
+                    <td class="px-6 py-4 text-red-400 font-mono">{{ user['mot_de_passe'] }}</td>
+                    <td class="px-6 py-4 text-gray-400">{{ user['date_inscription'] }}</td>
+                    <td class="px-6 py-4">
+                        <a href="/profil/{{ user['id'] }}" class="text-indigo-400 hover:text-indigo-300 transition">Voir →</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
