@@ -18,9 +18,7 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-800">
-                {{ users|length }}
                 {% for user in users %}
-                {{ user }}
                 <tr class="hover:bg-gray-800 transition">
                     <td class="px-6 py-4 text-gray-400">{{ user['id'] }}</td>
                     <td class="px-6 py-4">{{ user['nom'] }}</td>

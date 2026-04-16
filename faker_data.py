@@ -1,5 +1,7 @@
 import sqlite3
 from faker import Faker
+import os
+print(os.path.abspath('database.db'))
 
 conn = sqlite3.connect('database.db')
 cursor = conn.cursor()

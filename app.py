@@ -1,5 +1,7 @@
 import sqlite3
 from flask import Flask, render_template, g
+import os
+print(os.path.abspath('database.db'))
 
 
 app = Flask(__name__)
@@ -23,14 +25,16 @@ def acceuil():
 @app.route('/utilisateurs')
 def utilisateurs():
     db = get_db()
-    user = db.execute('SELECT * FROM utilisateurs').fetchall()
-    print(len(user))
-    return render_template('utilisateurs.html', user=user)
+    users = db.execute('SELECT * FROM utilisateurs').fetchall()
+    print(len(users))
+    for user in users:
+        print(dict(user))
+    return render_template('utilisateurs.html', users=users)
 
-@app.route('/profil/int:id>')
+@app.route('/profil/<int:id>')
 def profil(id):
     db = get_db()
-    user = db.execute('SELECT * FROM utilisateurs WHERE id = ?', (id,)).fetchall()
+    user = db.execute('SELECT * FROM utilisateurs WHERE id = ?', (id,)).fetchone()
     return render_template('profil.html', user=user)
 
 if __name__ == '__main__':
