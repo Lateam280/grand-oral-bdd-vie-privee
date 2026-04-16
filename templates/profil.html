@@ -22,7 +22,8 @@
             </div>
             <div class="bg-gray-800 rounded-xl px-6 py-4">
                 <p class="text-gray-400 text-xs uppercase mb-1">Mot de passe</p>
-                <p class="text-red-400 font-mono">{{ user['mot_de_passe'] }}</p>
+                <p class="text-green-400 font-mono">••••••••</p>
+                <p class="text-gray-500 text-xs mt-1">Stocké sous forme de hash — illisible même par l'administrateur</p>
             </div>
             <div class="bg-gray-800 rounded-xl px-6 py-4">
                 <p class="text-gray-400 text-xs uppercase mb-1">Date d'inscription</p>
@@ -30,9 +31,18 @@
             </div>
         </div>
 
-        <div class="mt-8 bg-red-950 border border-red-800 rounded-xl px-6 py-4">
-            <p class="text-red-400 font-semibold mb-1">⚠ Danger — Données sensibles exposées</p>
-            <p class="text-gray-400 text-sm">Le mot de passe de cet utilisateur est stocké en clair. En cas de fuite de la base de données, toutes ces informations seraient directement lisibles par un attaquant.</p>
+        <div class="mt-8 bg-green-950 border border-green-800 rounded-xl px-6 py-4 mb-6">
+            <p class="text-green-400 font-semibold mb-1">✓ Données protégées</p>
+            <p class="text-gray-400 text-sm">Le mot de passe est hashé avec werkzeug. Même en cas de fuite, il est illisible.</p>
+        </div>
+
+        <div class="bg-gray-800 rounded-xl px-6 py-4">
+            <p class="text-gray-400 text-xs uppercase mb-3">Droit à l'effacement — RGPD</p>
+            <a href="/supprimer/{{ user['id'] }}" 
+               onclick="return confirm('Supprimer définitivement cet utilisateur ?')"
+               class="bg-red-700 hover:bg-red-600 text-white px-6 py-2 rounded-lg text-sm transition">
+                Supprimer ce compte
+            </a>
         </div>
     </div>
 </div>

@@ -1,6 +1,8 @@
 import sqlite3
 from faker import Faker
+from werkzeug.security import generate_password_hash
 import os
+
 print(os.path.abspath('database.db'))
 
 conn = sqlite3.connect('database.db')
@@ -8,20 +10,17 @@ cursor = conn.cursor()
 
 fake = Faker(locale="fr_FR")
 liste_id = []
+
 for user in range(50):
     nom = fake.last_name()
     prenom = fake.first_name()
     email = fake.email()
-    mot_de_passe = fake.password()
+    mot_de_passe = generate_password_hash(fake.password())
     date_inscription = str(fake.date_this_decade())
-    
-    cursor.execute("INSERT INTO utilisateurs (nom,prenom,email,mot_de_passe,date_inscription) VALUES (?,?,?,?,?)", (nom,prenom,email,mot_de_passe,date_inscription))
 
+    cursor.execute("INSERT INTO utilisateurs (nom,prenom,email,mot_de_passe,date_inscription) VALUES (?,?,?,?,?)", 
+                   (nom, prenom, email, mot_de_passe, date_inscription))
     id = cursor.lastrowid
     liste_id.append(id)
 
 conn.commit()
-
-    
-
-
